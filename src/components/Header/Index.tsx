@@ -1,12 +1,10 @@
-"use client";
-import React, { FC, useState } from "react";
-interface IProps {
-  onSearched: (e: string) => void;
+import React, { FC, useEffect, useState } from "react";
+import SearchField from "../Shared/Fields/SearchField";
+interface HeaderProps {
+  searchFunc?: (e: string) => void;
 }
 
-const Index: FC<IProps> = ({ onSearched }) => {
-  const [search, setSearch] = useState<string>("");
-
+const Header: React.FC<HeaderProps> = ({ searchFunc }) => {
   return (
     <>
       <header
@@ -16,13 +14,8 @@ const Index: FC<IProps> = ({ onSearched }) => {
       >
         <nav className="flex justify-between items-center container" >
           <span className="">Shop Island</span>
-          <div className="">
-            <input
-              type="text"
-              value={search}
-              onChange={({ target }) => setSearch(target.value)}
-              className=""
-            />
+          <div className="md:min-w-[300px]">
+            <SearchField />
           </div>
         </nav>
       </header>
@@ -30,4 +23,4 @@ const Index: FC<IProps> = ({ onSearched }) => {
   );
 };
 
-export default Index;
+export default Header;
